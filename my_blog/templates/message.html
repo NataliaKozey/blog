@@ -1,0 +1,53 @@
+{%extends 'main.html'%}
+{%load staticfiles%}
+{%block message%}
+
+<div class="container">
+    <section class="special">
+        {%for mess in messages%}
+
+            <h2>{{mess.text}}</h2>
+            <p>User: {{mess.mes_user}}</p>
+            <p>Date published: {{mess.date_published}}</p>
+
+        {%endfor%}
+        {% if username %}
+            <form action="" method='POST'>
+                {% csrf_token %}
+                <table>
+                {{ form }}
+                </table>
+                <input type="submit" value='Send' class="button">
+
+            </form>
+        {%endif%}
+    </section>
+</div>
+
+    <footer id="footer">
+        <div class="container">
+
+                <ul class="copyright">
+                    {% if tasks.has_previous%}
+                        <li class='arrow'><a href="/page/{{messages.previous_page_number}}/">&laquo;</a></li>
+                    {%else%}
+                        <li class='arrow unavailable'><a href="">&laquo;</a></li>
+                    {%endif%}
+                    {%for page in messages.paginator.page_range%}
+                    {%if page == messages.number%}
+                        <li class="current"><a href="/page/{{page}}/">{{page}}</a></li>
+                    {%else%}
+                        <li><a href="/page/{{page}}/">{{page}}</a></li>
+                    {%endif%}
+                    {%endfor%}
+                    {%if messages.has_next%}
+                        <li class="arrow"><a href="/page/{{messages.next_page_number}}/">&raquo;</a></li>
+                    {%else%}
+                        <li class='arrow unavailable'><a href="">&raquo;</a></li>
+                    {%endif%}
+                </ul>
+        </div>
+    </footer>
+
+    </section>
+{%endblock%}

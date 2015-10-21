@@ -1,0 +1,17 @@
+{%extends 'main.html'%}
+{%block login%}
+    <div class='large-offset-3 large-6 colums'>
+        <form action='/auth/login/' method='post'>
+            {%csrf_token%}
+            <laben for='username'>user name</laben>
+            <input type='text' name="username" id='username'>
+            <laben for='password'>password</laben>
+            <input type='password' name="password" id='password'>
+            {%if login_error%}
+                <label class='error'>{{login_error}}</label>
+            {%endif%}
+            <input class='button' type='submit' value="Login">
+            <div class='label round secondary'><a href="/auth/register/">Registration</a></div>
+        </form>
+    </div>
+{%endblock%}

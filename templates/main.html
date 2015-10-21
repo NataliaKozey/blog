@@ -1,0 +1,54 @@
+
+<!DOCTYPE html >
+{%load staticfiles%}
+<html>
+    <head>
+
+        <title>Little Blog</title>
+        <link rel="stylesheet"  href="{%static 'static/css/skel.css' %}" />
+        <link rel="stylesheet" href="{%static 'static/css/style.css' %}" />
+        <link rel="stylesheet" href="{%static 'static/css/style-xlarge.css'%}" />
+
+
+    </head>
+    <body>
+
+        <header id="header" class="skel-layers-fixed">
+            <nav id="nav">
+                <ul>
+                    {%if username %}
+                    <li><a href='/auth/logout/' >logout({{username}})</a></li>
+                    {%else%}
+                    <li><a href='/auth/login/' >login</a></li>
+                    {%endif%}
+                </ul>
+            </nav>
+        </header>
+        <section id="banner">
+            <div class="inner">
+                <h2><a href="/">My little blog</a></h2>
+            </div>
+        </section>
+
+        {%block login%}{%endblock%}
+        {%block register%}{%endblock%}
+
+        {%block message%}{%endblock%}
+
+
+     <footer id="footer">
+            <div class="container">
+
+
+                <ul class="copyright">
+                    <li>&copy; All rights reserved.</li>
+                    <li>By: Natalia Kozey</li>
+
+                </ul>
+            </div>
+        </footer>
+
+
+    </body>
+</html>
+
